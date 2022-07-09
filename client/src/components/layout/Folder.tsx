@@ -5,11 +5,12 @@ export interface IFolder{
     icon:string;
     title:string;
     count:number;
+    to:string;
 }
 
-const Folder: React.FC<IFolder> = ({icon,title,count}) => {
+const Folder: React.FC<IFolder> = ({icon,title,count,to}) => {
   return (
-    <Link to="/inbox">
+    <Link to={to}>
       <div className="flex flex-row justify-between items-center">
         <div className="flex flex-row items-center">
           <img

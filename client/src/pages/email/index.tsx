@@ -1,15 +1,34 @@
 import React from "react";
-import EmailsTable from "../../components/EmailsTable";
+import MailList from "../../components/MailList";
 import Layout from "../../components/layout/Layout";
-import Toolslist from "../../components/ToolsList";
+import ToolBar from "../../components/ToolBar";
+import { observer } from "mobx-react-lite";
+import { useParams } from "react-router-dom";
+import mailStore from "../../store/MailStore";
 
-const EmailPage: React.FC = () => {
+interface IEmailPageProps {
+  folder: string;
+}
+
+const EmailPage: React.FC<IEmailPageProps> = observer(() => {
+  let { folder } = useParams();
+
+  if (!folder) {
+    folder = "";
+  }
+
+  let mails = window.localStorage.getItem(folder);
+
+  if (!mails) {
+    mails = "[]";
+  }
+
   return (
     <Layout>
-      <Toolslist/>
-      <EmailsTable />
+      <ToolBar isActive={mailStore.chosen.length > 0} />
+      <MailList mails={JSON.parse(mails)} />
     </Layout>
   );
-};
+});
 
 export default EmailPage;

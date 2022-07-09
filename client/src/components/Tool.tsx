@@ -1,6 +1,6 @@
 import React from "react";
 
-interface ITool {
+export interface ITool {
   icon: string;
   title: string;
   action: (arg: any) => void;
