@@ -35,6 +35,7 @@ const App = observer(() => {
       window.localStorage.setItem("inbox", JSON.stringify(inboxData));
       window.localStorage.setItem("sent", "[]");
       window.localStorage.setItem("trash", "[]");
+      window.localStorage.setItem("spam", "[]");
     }
   }, [shouldInit]);
 

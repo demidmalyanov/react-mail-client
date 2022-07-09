@@ -8,6 +8,10 @@ export interface IMailList {
 }
 
 const MailList: React.FC<IMailList> = observer(({ mails }) => {
+  if (mails.length === 0) {
+    return <p className="my-2">В данной папке нет сообщений.</p>;
+  }
+
   return (
     <div className="flex flex-col w-[100%] overflow-x-hidden">
       <div className="">

@@ -16,7 +16,7 @@ const ToolBar: React.FC<IToolBarProps> = ({ isActive }) => {
   return (
     <div
       className={`${
-        !isActive && "pointer-events-none text-gray-400"
+        !isActive && "pointer-events-none text-gray-400 opacity-50"
       } flex flex-row`}
     >
       {/*Disable area if no one chosen*/}
