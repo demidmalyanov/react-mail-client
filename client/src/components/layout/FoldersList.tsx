@@ -1,5 +1,5 @@
 import React from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 import Folder, { IFolder } from "./Folder";
 
 export interface IFolderList {
@@ -8,7 +8,7 @@ export interface IFolderList {
 
 
 const FoldersList: React.FC<IFolderList> = ({folders}) => {
-  const location = useLocation();
+  const {folder} = useParams()
 
 
   return (
@@ -25,11 +25,11 @@ const FoldersList: React.FC<IFolderList> = ({folders}) => {
           return (
             <li
               className={`${
-                location.pathname === f.to ? "bg-gray-300" : ""
+                folder === f.urlParam ? "bg-gray-300" : ""
               } py-1 px-4 rounded-xl`}
               key={f.title}
             >
-              <Folder title={f.title} count={f.count} icon={f.icon} to={f.to} />
+              <Folder title={f.title} count={f.count} icon={f.icon} urlParam={f.urlParam} />
             </li>
           );
         })}

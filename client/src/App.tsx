@@ -2,10 +2,11 @@ import { observer } from "mobx-react-lite";
 import React from "react";
 import { Route, Routes } from "react-router-dom";
 import { IMail } from "./components/Mail";
-import EmailPage from "./pages/email";
+import EmailPage from "./pages/mail-list";
+import MailPage from "./pages/mail";
 
 const App = observer(() => {
-  const shouldInit = window.localStorage.getItem("init") ? false : true;
+  const shouldInit = localStorage.getItem("init") ? false : true;
 
   const inboxData: IMail[] = [
     {
@@ -29,14 +30,13 @@ const App = observer(() => {
       console.log("not init");
       return;
     }
-    if (typeof window !== "undefined") {
-      console.log("init storage");
-      window.localStorage.setItem("init", "true");
-      window.localStorage.setItem("inbox", JSON.stringify(inboxData));
-      window.localStorage.setItem("sent", "[]");
-      window.localStorage.setItem("trash", "[]");
-      window.localStorage.setItem("spam", "[]");
-    }
+
+    console.log("init storage");
+    localStorage.setItem("init", "true");
+    localStorage.setItem("inbox", JSON.stringify(inboxData));
+    localStorage.setItem("sent", "[]");
+    localStorage.setItem("trash", "[]");
+    localStorage.setItem("spam", "[]");
   }, [shouldInit]);
 
   return (
@@ -44,6 +44,7 @@ const App = observer(() => {
       <Routes>
         <Route path="/">
           <Route path=":folder" element={<EmailPage folder="" />} />
+          <Route path=":folder/:id" element={<MailPage />} />
         </Route>
       </Routes>
     </div>

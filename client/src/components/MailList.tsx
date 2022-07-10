@@ -1,5 +1,6 @@
 import { observer } from "mobx-react-lite";
 import React from "react";
+import { Link } from "react-router-dom";
 import { IFolder } from "./layout/Folder";
 import Mail, { IMail } from "./Mail";
 
@@ -21,15 +22,15 @@ const MailList: React.FC<IMailList> = observer(({ mails }) => {
               <tbody className="bg-white divide-y divide-gray-200 dark:bg-gray-800 dark:divide-gray-700 border border-t-slate-200 border-b-slate-200">
                 {mails.map((mail) => {
                   return (
-                    <Mail
-                      key={mail.id}
-                      id={mail.id}
-                      author={mail.author}
-                      subject={mail.subject}
-                      text={mail.text}
-                      timestamp={mail.timestamp}
-                      read={mail.read}
-                    />
+                      <Mail
+                        key={mail.id}
+                        id={mail.id}
+                        author={mail.author}
+                        subject={mail.subject}
+                        text={mail.text}
+                        timestamp={mail.timestamp}
+                        read={mail.read}
+                      />
                   );
                 })}
               </tbody>

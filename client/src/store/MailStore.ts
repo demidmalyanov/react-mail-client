@@ -17,6 +17,11 @@ class MailStore implements IMailStore {
     this.chosen = [];
   }
 
+  // Get single mail by id
+  getById(currentFolder:string,id:number){
+
+  }
+
   // Push to chosen when chooses mail
   onToggleMail(id: number, checked: boolean) {
     if (checked) {
@@ -31,8 +36,8 @@ class MailStore implements IMailStore {
     let currentFolderData = [];
     let destFolderData: any = [];
 
-    const currentFolderStr: any = window.localStorage.getItem(currentFolder);
-    const destFolderStr = window.localStorage.getItem(destFolder);
+    const currentFolderStr: any = localStorage.getItem(currentFolder);
+    const destFolderStr = localStorage.getItem(destFolder);
 
     if (currentFolder && destFolderStr) {
       currentFolderData = JSON.parse(currentFolderStr);
@@ -42,7 +47,7 @@ class MailStore implements IMailStore {
       currentFolderData.forEach((mail: any) => {
         if (this.chosen.includes(mail.id)) {
           destFolderData.push(mail);
-          window.localStorage.setItem(
+          localStorage.setItem(
             destFolder,
             JSON.stringify(destFolderData)
           );
@@ -52,7 +57,7 @@ class MailStore implements IMailStore {
       // remove mails from current folder
       const filteredFolderData = currentFolderData.filter((mail: IMail) => !this.chosen.includes(mail.id));
 
-      window.localStorage.setItem(
+      localStorage.setItem(
         currentFolder,
         JSON.stringify(filteredFolderData)
       );
@@ -61,7 +66,7 @@ class MailStore implements IMailStore {
 
   // manually mark mail as read
   markAsRead(currentFolder: string) {
-    const folderStr: any = window.localStorage.getItem(currentFolder);
+    const folderStr: any = localStorage.getItem(currentFolder);
     const folderData = JSON.parse(folderStr);
 
     if (folderData) {
@@ -71,7 +76,7 @@ class MailStore implements IMailStore {
         }
       });
 
-      window.localStorage.setItem(currentFolder, JSON.stringify(folderData));
+      localStorage.setItem(currentFolder, JSON.stringify(folderData));
     }
   }
 }
