@@ -3,51 +3,36 @@ import { IFolder } from "../components/layout/Folder";
 
 interface IFolderStore {}
 
+const initialFolderData = "[]";
+
+const initFolders: any = localStorage.getItem("initFolders");
+
 class FolderStore implements IFolderStore {
-  folders: IFolder[] = [
-    {
-      icon: "/icons/inbox-icon.svg",
-      title: "Входящие",
-      urlParam: "inbox",
-    },
-    {
-      icon: "/icons/sent-icon.svg",
-      title: "Отправленные",
-      urlParam: "sent",
-    },
-    {
-      icon: "/icons/trash-icon.svg",
-      title: "Удаленные",
-      urlParam: "trash",
-    },
-    {
-      icon: "/icons/spam-icon.svg",
-      title: "Спам",
-      urlParam: "spam",
-    },
-  ];
+  folders: IFolder[] = JSON.parse(initFolders);
 
   constructor() {
     makeAutoObservable(this);
   }
 
-  createFolder(){
+  createFolder(title: string) {
+    // Create new folder and set in storage
+    localStorage.setItem(title, initialFolderData);
 
+    // Push new folder to folder list
+    this.folders.push({
+      icon: "/icons/folder-icon.svg",
+      title: title,
+      urlParam: `custom_${Date.now()}`,
+    });
+
+    localStorage.setItem("initFolders", JSON.stringify(this.folders));
   }
 
-  getFolderData(){
+  getFolderData() {}
 
-  }
+  updateFolder(title: string) {}
 
-  updateFolder(){
-
-  }
-
-  deleteFolder(){
-    
-  }
-
-
+  deleteFolder() {}
 }
 
 export default new FolderStore();

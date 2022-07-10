@@ -1,7 +1,5 @@
 import { observer } from "mobx-react-lite";
 import React from "react";
-import { Link } from "react-router-dom";
-import { IFolder } from "./layout/Folder";
 import Mail, { IMail } from "./Mail";
 
 export interface IMailList {

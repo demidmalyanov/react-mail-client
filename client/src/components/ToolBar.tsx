@@ -29,11 +29,18 @@ const ToolBar: React.FC<IToolBarProps> = ({ isActive }) => {
         }}
       />
       <Tool
-        icon="/icons/trash-icon.svg"
+        icon="/icons/read-icon.svg"
         title="Прочитано"
         action={() => {
           mailStore.markAsRead(folder);
           mailStore.clearChosen();
+        }}
+      />
+      <Tool
+        icon="/icons/folder-icon.svg"
+        title="В папку"
+        action={() => {
+          alert("TBD");
         }}
       />
     </div>

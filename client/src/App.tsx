@@ -4,39 +4,67 @@ import { Route, Routes } from "react-router-dom";
 import { IMail } from "./components/Mail";
 import EmailPage from "./pages/mail-list";
 import MailPage from "./pages/mail";
+import { IFolder } from "./components/layout/Folder";
+
+const shouldInit = localStorage.getItem("init") ? false : true;
+
+const inboxData: IMail[] = [
+  {
+    id: Date.now(),
+    author: "Demid M",
+    text: "Show me your tits",
+    read: false,
+    timestamp: Date.now(),
+  },
+  {
+    id: 454545665,
+    author: "Demid M",
+    text: "Show me your ass",
+    read: false,
+    timestamp: Date.now(),
+  },
+];
+
+const initialFolders: IFolder[] = [
+  {
+    icon: "/icons/inbox-icon.svg",
+    title: "Входящие",
+    urlParam: "inbox",
+  },
+  {
+    icon: "/icons/sent-icon.svg",
+    title: "Отправленные",
+    urlParam: "sent",
+  },
+  {
+    icon: "/icons/trash-icon.svg",
+    title: "Удаленные",
+    urlParam: "trash",
+  },
+  {
+    icon: "/icons/spam-icon.svg",
+    title: "Спам",
+    urlParam: "spam",
+  },
+];
+
+const initApp = () => {
+  console.log("init storage");
+  localStorage.setItem("init", "true");
+  localStorage.setItem("inbox", JSON.stringify(inboxData));
+  localStorage.setItem("sent", "[]");
+  localStorage.setItem("trash", "[]");
+  localStorage.setItem("spam", "[]");
+  localStorage.setItem("initFolders", JSON.stringify(initialFolders));
+};
 
 const App = observer(() => {
-  const shouldInit = localStorage.getItem("init") ? false : true;
-
-  const inboxData: IMail[] = [
-    {
-      id: Date.now(),
-      author: "Demid M",
-      text: "Show me your tits",
-      read: false,
-      timestamp: Date.now(),
-    },
-    {
-      id: 454545665,
-      author: "Demid M",
-      text: "Show me your ass",
-      read: false,
-      timestamp: Date.now(),
-    },
-  ];
-
   React.useEffect(() => {
     if (!shouldInit) {
       console.log("not init");
       return;
     }
-
-    console.log("init storage");
-    localStorage.setItem("init", "true");
-    localStorage.setItem("inbox", JSON.stringify(inboxData));
-    localStorage.setItem("sent", "[]");
-    localStorage.setItem("trash", "[]");
-    localStorage.setItem("spam", "[]");
+    initApp();
   }, [shouldInit]);
 
   return (
