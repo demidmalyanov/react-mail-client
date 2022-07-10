@@ -1,15 +1,36 @@
 import React from "react";
 import { Link, useParams } from "react-router-dom";
+import EditFolderModal from "./EditFolderModal";
 
 export interface IFolder {
   icon?: string;
   title: string;
   count?: number;
   urlParam: string;
+  readonly: boolean;
 }
 
-const Folder: React.FC<IFolder> = ({ icon, title, count, urlParam }) => {
+const Folder: React.FC<IFolder> = ({
+  icon,
+  title,
+  count,
+  urlParam,
+  readonly,
+}) => {
   const { folder } = useParams();
+  const [showBtn, setShowBtn] = React.useState<boolean>(false);
+
+  const handleMouseEnter = () => {
+
+    console.log(readonly)
+    if (!readonly) {
+      setShowBtn(true);
+    }
+  };
+
+  const handleMouseLeave = () => {
+    setShowBtn(false);
+  };
 
   return (
     <Link to={`/${urlParam}`}>
@@ -17,6 +38,8 @@ const Folder: React.FC<IFolder> = ({ icon, title, count, urlParam }) => {
         className={`${
           folder === urlParam ? "bg-gray-300" : ""
         } py-1 px-4 rounded-xl hover:bg-slate-200 flex flex-row justify-between items-center`}
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
       >
         <div className="flex flex-row items-center">
           {icon && (
@@ -26,6 +49,7 @@ const Folder: React.FC<IFolder> = ({ icon, title, count, urlParam }) => {
         </div>
 
         <p>{count}</p>
+        {showBtn && <EditFolderModal currentParam={urlParam} />}
       </div>
     </Link>
   );

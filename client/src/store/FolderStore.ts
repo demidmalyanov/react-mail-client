@@ -16,13 +16,14 @@ class FolderStore implements IFolderStore {
 
   createFolder(title: string) {
     // Create new folder and set in storage
-    localStorage.setItem(title, initialFolderData);
+    localStorage.setItem(`custom_${Date.now()}`, initialFolderData);
 
     // Push new folder to folder list
     this.folders.push({
       icon: "/icons/folder-icon.svg",
       title: title,
       urlParam: `custom_${Date.now()}`,
+      readonly: false,
     });
 
     localStorage.setItem("initFolders", JSON.stringify(this.folders));
@@ -30,7 +31,24 @@ class FolderStore implements IFolderStore {
 
   getFolderData() {}
 
-  updateFolder(title: string) {}
+  updateFolder(urlParam:string, newTitle: string) {
+    // copy data from old
+    const data: any = localStorage.getItem(urlParam);
+    console.log(data);
+
+    // set new key
+    localStorage.setItem(newTitle, data);
+
+    // rewrite init folders
+    this.folders.forEach((folder) => {
+      if (folder.urlParam === urlParam) {
+        folder.title = newTitle;
+      }
+    });
+
+    // remove old item
+    localStorage.removeItem(urlParam);
+  }
 
   deleteFolder() {}
 }

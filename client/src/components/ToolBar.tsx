@@ -2,6 +2,7 @@ import { observer } from "mobx-react-lite";
 import React from "react";
 import { useParams } from "react-router-dom";
 import mailStore from "../store/MailStore";
+import ChooseFolderModal from "./layout/ChooseFolderModal";
 import Tool, { ITool } from "./Tool";
 
 export interface IToolBarProps {
@@ -36,13 +37,8 @@ const ToolBar: React.FC<IToolBarProps> = ({ isActive }) => {
           mailStore.clearChosen();
         }}
       />
-      <Tool
-        icon="/icons/folder-icon.svg"
-        title="В папку"
-        action={() => {
-          alert("TBD");
-        }}
-      />
+      <ChooseFolderModal/>
+     
     </div>
   );
 };

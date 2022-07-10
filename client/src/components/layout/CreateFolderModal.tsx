@@ -1,4 +1,3 @@
-import { observer } from "mobx-react-lite";
 import React from "react";
 import Modal from "react-modal";
 import folderStore from "../../store/FolderStore";
@@ -59,7 +58,7 @@ const CreateFolderModal: React.FC = () => {
           type="text"
           value={title}
           onChange={handleTitleChange}
-          placeholder="Введите название папки"
+          placeholder="Введите имя папки"
           className="shadow my-2 border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
         />
         <button

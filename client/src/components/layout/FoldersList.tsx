@@ -18,6 +18,7 @@ const FoldersList: React.FC<IFolderList> = ({ folders }) => {
                 count={f.count}
                 icon={f.icon}
                 urlParam={f.urlParam}
+                readonly={f.readonly}
               />
             </li>
           );

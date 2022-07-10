@@ -30,21 +30,25 @@ const initialFolders: IFolder[] = [
     icon: "/icons/inbox-icon.svg",
     title: "Входящие",
     urlParam: "inbox",
+    readonly: true,
   },
   {
     icon: "/icons/sent-icon.svg",
     title: "Отправленные",
     urlParam: "sent",
+    readonly: true,
   },
   {
     icon: "/icons/trash-icon.svg",
     title: "Удаленные",
     urlParam: "trash",
+    readonly: true,
   },
   {
     icon: "/icons/spam-icon.svg",
     title: "Спам",
     urlParam: "spam",
+    readonly: true,
   },
 ];
 
@@ -56,6 +60,7 @@ const initApp = () => {
   localStorage.setItem("trash", "[]");
   localStorage.setItem("spam", "[]");
   localStorage.setItem("initFolders", JSON.stringify(initialFolders));
+  
 };
 
 const App = observer(() => {
