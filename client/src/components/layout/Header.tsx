@@ -8,7 +8,7 @@ const Header: React.FC = () => {
         className="h-[35px] w-[120px]"
         alt="logo"
       />
-      <p>dag-dog.ru@yandex.ru</p>
+      <p>{localStorage.getItem("email")}</p>
     </div>
   );
 };

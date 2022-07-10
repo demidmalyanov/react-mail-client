@@ -5,30 +5,30 @@ import ToolBar from "../../components/ToolBar";
 import { observer } from "mobx-react-lite";
 import { Outlet, useParams } from "react-router-dom";
 import mailStore from "../../store/MailStore";
+import { IMail } from "../../components/Mail";
 
-interface IEmailPageProps {
-  folder: string;
-}
-
-const MailListPage: React.FC<IEmailPageProps> = observer(() => {
+const MailListPage: React.FC = () => {
   let { folder } = useParams();
+  const [mails, setMails] = React.useState<IMail[]>([]);
 
-  if (!folder) {
-    folder = "";
-  }
+  console.log(folder);
 
-  let mails = localStorage.getItem(folder);
-
-  if (!mails) {
-    mails = "[]";
-  }
+  React.useEffect(() => {
+    if (folder) {
+      let data = localStorage.getItem(folder);
+      if (data) {
+        const parsedData = JSON.parse(data);
+        setMails(parsedData);
+      }
+    }
+  }, []);
 
   return (
     <Layout>
       <ToolBar isActive={mailStore.chosen.length > 0} />
-      <MailList mails={JSON.parse(mails)} />
+      {mails.length === 0 ? <p>Loading...</p> : <MailList mails={mails} />}
     </Layout>
   );
-});
+};
 
-export default MailListPage;
+export default observer(MailListPage);

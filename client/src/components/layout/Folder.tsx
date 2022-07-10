@@ -22,7 +22,6 @@ const Folder: React.FC<IFolder> = ({
 
   const handleMouseEnter = () => {
 
-    console.log(readonly)
     if (!readonly) {
       setShowBtn(true);
     }

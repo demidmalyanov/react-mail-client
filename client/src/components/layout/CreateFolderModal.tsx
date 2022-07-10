@@ -62,6 +62,7 @@ const CreateFolderModal: React.FC = () => {
           className="shadow my-2 border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
         />
         <button
+          type="button"
           onClick={() => handleFolderCreate(title)}
           className="w-full bg-yellow-300 hover:bg-yellow-400 rounded-lg p-2 text-sm"
         >

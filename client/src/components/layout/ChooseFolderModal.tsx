@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import folderStore from "../../store/FolderStore";
 import MailStore from "../../store/MailStore";
 import Tool from "../Tool";
+import { observer } from "mobx-react-lite";
 
 const customStyles = {
   content: {
@@ -92,4 +93,4 @@ const ChooseFolderModal: React.FC = () => {
   );
 };
 
-export default ChooseFolderModal;
+export default observer(ChooseFolderModal)

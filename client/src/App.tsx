@@ -2,9 +2,10 @@ import { observer } from "mobx-react-lite";
 import React from "react";
 import { Route, Routes } from "react-router-dom";
 import { IMail } from "./components/Mail";
-import EmailPage from "./pages/mail-list";
 import MailPage from "./pages/mail";
 import { IFolder } from "./components/layout/Folder";
+import MailListPage from "./pages/mail-list";
+import IndexPage from "./pages/auth";
 
 const shouldInit = localStorage.getItem("init") ? false : true;
 
@@ -60,7 +61,6 @@ const initApp = () => {
   localStorage.setItem("trash", "[]");
   localStorage.setItem("spam", "[]");
   localStorage.setItem("initFolders", JSON.stringify(initialFolders));
-  
 };
 
 const App = observer(() => {
@@ -75,9 +75,9 @@ const App = observer(() => {
   return (
     <div className="App">
       <Routes>
-        <Route path="/">
-          <Route path=":folder" element={<EmailPage folder="" />} />
-          <Route path=":folder/:id" element={<MailPage />} />
+        <Route path="/" element={<IndexPage />} />
+        <Route path="/:folder" element={<MailListPage />}>
+          <Route path=":id" element={<MailPage />} />
         </Route>
       </Routes>
     </div>

@@ -11,7 +11,6 @@ interface ILayoutProps {
 
 const Layout: React.FC<ILayoutProps> = ({ children }) => {
 
-  console.log(folderStore.folders)
   return (
     <>
       <Header />

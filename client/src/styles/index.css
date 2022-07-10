@@ -9,15 +9,6 @@ body {
   -moz-osx-font-smoothing: grayscale;
   background-color: #cdd6e4;
   padding: 15px 12px 15px 12px;
-  min-height: 100vh;
   min-width: 1200px;
 }
 
-#root{
-  min-height: 100vh;
-}
-
-.App{
-  height: 100%;
-  position: relative;
-}
