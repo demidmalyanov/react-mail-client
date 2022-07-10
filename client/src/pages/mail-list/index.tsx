@@ -27,7 +27,6 @@ const MailListPage: React.FC<IEmailPageProps> = observer(() => {
     <Layout>
       <ToolBar isActive={mailStore.chosen.length > 0} />
       <MailList mails={JSON.parse(mails)} />
-      <Outlet />
     </Layout>
   );
 });

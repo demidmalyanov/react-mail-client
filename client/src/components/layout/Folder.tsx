@@ -2,9 +2,9 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 export interface IFolder {
-  icon: string;
+  icon?: string;
   title: string;
-  count: number;
+  count?: number;
   urlParam: string;
 }
 

@@ -18,8 +18,16 @@ class MailStore implements IMailStore {
   }
 
   // Get single mail by id
-  getById(currentFolder:string,id:number){
+  getMailById(currentFolder: string, id: number): null | IMail {
+    const currentFolderData = localStorage.getItem(currentFolder);
+    let result = null;
 
+    if (currentFolderData) {
+      let data = JSON.parse(currentFolderData);
+      result = data.filter((mail: IMail) => mail.id === id);
+    }
+
+    return result[0];
   }
 
   // Push to chosen when chooses mail
@@ -33,45 +41,42 @@ class MailStore implements IMailStore {
 
   // move mails to another folder
   moveToFolder(currentFolder: string, destFolder: string) {
-    let currentFolderData = [];
-    let destFolderData: any = [];
-
     const currentFolderStr: any = localStorage.getItem(currentFolder);
     const destFolderStr = localStorage.getItem(destFolder);
 
     if (currentFolder && destFolderStr) {
-      currentFolderData = JSON.parse(currentFolderStr);
-      destFolderData = JSON.parse(destFolderStr);
+      let currentFolderData = JSON.parse(currentFolderStr);
+      let destFolderData = JSON.parse(destFolderStr);
 
       // push mails to destination arr
       currentFolderData.forEach((mail: any) => {
         if (this.chosen.includes(mail.id)) {
           destFolderData.push(mail);
-          localStorage.setItem(
-            destFolder,
-            JSON.stringify(destFolderData)
-          );
+          localStorage.setItem(destFolder, JSON.stringify(destFolderData));
         }
       });
 
       // remove mails from current folder
-      const filteredFolderData = currentFolderData.filter((mail: IMail) => !this.chosen.includes(mail.id));
-
-      localStorage.setItem(
-        currentFolder,
-        JSON.stringify(filteredFolderData)
+      const filteredFolderData = currentFolderData.filter(
+        (mail: IMail) => !this.chosen.includes(mail.id)
       );
+
+      localStorage.setItem(currentFolder, JSON.stringify(filteredFolderData));
     }
   }
 
-  // manually mark mail as read
-  markAsRead(currentFolder: string) {
+  // manually mark mail as read chosen mails
+  markAsRead(currentFolder: string, id?: number) {
     const folderStr: any = localStorage.getItem(currentFolder);
     const folderData = JSON.parse(folderStr);
 
     if (folderData) {
       folderData?.forEach((mail: IMail) => {
         if (this.chosen.includes(mail.id)) {
+          mail.read = true;
+        }
+        // mark as read single mail when visited
+        if (mail.id === id) {
           mail.read = true;
         }
       });
