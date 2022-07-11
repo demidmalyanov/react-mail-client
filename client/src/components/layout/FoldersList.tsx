@@ -1,16 +1,23 @@
 import { observer } from "mobx-react-lite";
 import React from "react";
+import FolderStore from "../../store/FolderStore";
 import Folder, { IFolder } from "./Folder";
 
-export interface IFolderList {
-  folders: IFolder[];
-}
+const FoldersList: React.FC = () => {
+  const defaultValue :any= localStorage.getItem("initFolders")
+  const [folders, setFolders] = React.useState<IFolder[] | null>(null);
 
-const FoldersList: React.FC<IFolderList> = ({ folders }) => {
+  React.useEffect(() => {
+   
+   
+      setFolders(FolderStore.folders);
+  
+  }, [FolderStore.folders]);
+
   return (
     <div className="w-[100%] h-[500px]">
       <ul>
-        {folders.map((f) => {
+        {folders?.map((f: IFolder) => {
           return (
             <li key={f.title}>
               <Folder

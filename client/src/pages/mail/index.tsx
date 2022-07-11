@@ -1,3 +1,4 @@
+import { observer } from "mobx-react-lite";
 import React from "react";
 import { useParams } from "react-router-dom";
 import Layout from "../../components/layout/Layout";
@@ -31,4 +32,4 @@ const MailPage: React.FC = () => {
   );
 };
 
-export default MailPage;
+export default observer(MailPage);

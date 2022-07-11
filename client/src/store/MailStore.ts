@@ -41,6 +41,7 @@ class MailStore implements IMailStore {
 
   // move mails to another folder
   moveToFolder(currentFolder: string, destFolder: string) {
+    console.log("called moving")
     const currentFolderStr: any = localStorage.getItem(currentFolder);
     const destFolderStr = localStorage.getItem(destFolder);
 
@@ -83,6 +84,7 @@ class MailStore implements IMailStore {
 
       localStorage.setItem(currentFolder, JSON.stringify(folderData));
     }
+    this.clearChosen()
   }
 }
 

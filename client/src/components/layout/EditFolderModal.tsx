@@ -55,6 +55,8 @@ const EditFolderModal: React.FC<IEditModalProps> = ({ currentParam }) => {
         onAfterClose={handleAfterModalOpen}
         contentLabel="Example Modal"
         style={customStyles}
+        ariaHideApp={false}
+
       >
         <h2>Редактирование папки</h2>
         <input
@@ -67,7 +69,6 @@ const EditFolderModal: React.FC<IEditModalProps> = ({ currentParam }) => {
         />
         <button
           onClick={() => {
-            console.log(title);
             handleFolderUpdate(title);
           }}
           className="w-full bg-yellow-300 hover:bg-yellow-400 rounded-lg p-2 text-sm"

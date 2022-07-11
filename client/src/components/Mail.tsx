@@ -25,6 +25,7 @@ const Mail: React.FC<IMail> = ({
   // current folder param
   const { folder } = useParams();
 
+
   return (
     <tr className="hover:bg-gray-100 dark:hover:bg-gray-700 cursor-pointer">
       <td className="p-4 w-4">
@@ -35,10 +36,10 @@ const Mail: React.FC<IMail> = ({
             value={id}
             className="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300    dark:bg-gray-700 dark:border-gray-600"
             onChange={(e) => {
-              setChecked((prevState) => !prevState);
               mailStore.onToggleMail(parseInt(e.target.value), !checked);
+              setChecked(!checked);
             }}
-            checked={mailStore.chosen.includes(id)}
+            checked={checked}
           />
         </div>
       </td>

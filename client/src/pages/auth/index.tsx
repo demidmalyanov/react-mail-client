@@ -8,7 +8,7 @@ const IndexPage: React.FC = () => {
   const handleSubmit = (e: React.SyntheticEvent) => {
     e.preventDefault();
     localStorage.setItem("email", email);
-    navigate("/inbox",{replace:true});
+    navigate("/inbox");
   };
 
   const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {

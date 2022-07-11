@@ -1,3 +1,4 @@
+import { observer } from "mobx-react-lite";
 import React from "react";
 import Modal from "react-modal";
 import folderStore from "../../store/FolderStore";
@@ -51,6 +52,7 @@ const CreateFolderModal: React.FC = () => {
         onAfterClose={handleAfterModalOpen}
         contentLabel="Example Modal"
         style={customStyles}
+        ariaHideApp={false}
       >
         <h2>Новая папка</h2>
         <input
@@ -73,4 +75,4 @@ const CreateFolderModal: React.FC = () => {
   );
 };
 
-export default CreateFolderModal;
+export default observer(CreateFolderModal);

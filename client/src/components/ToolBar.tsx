@@ -34,7 +34,6 @@ const ToolBar: React.FC<IToolBarProps> = ({ isActive }) => {
         title="Прочитано"
         action={() => {
           mailStore.markAsRead(folder);
-          mailStore.clearChosen();
         }}
       />
       <ChooseFolderModal/>

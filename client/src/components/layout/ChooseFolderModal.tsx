@@ -40,7 +40,7 @@ const ChooseFolderModal: React.FC = () => {
 
   const handleMoveToFolder = () => {
     MailStore.moveToFolder(folder, value);
-    MailStore.clearChosen()
+    MailStore.clearChosen();
     setIsOpen(false);
   };
 
@@ -57,29 +57,33 @@ const ChooseFolderModal: React.FC = () => {
         onAfterClose={handleAfterModalOpen}
         contentLabel="Example Modal"
         style={customStyles}
+        ariaHideApp={false}
       >
         <fieldset>
           <legend>Выберите папку назначения</legend>
 
-          {folderStore.folders.map((f) => {
-            return (
-              <>
-                <div className="flex items-center">
-                  <input
-                    id={f.urlParam}
-                    type="radio"
-                    name="folder"
-                    value={f.urlParam}
-                    className="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300    dark:bg-gray-700 dark:border-gray-600"
-                    onChange={handleRadioChange}
-                  />
-                  <label htmlFor={f.urlParam} className="ml-2">
-                    {f.title}
-                  </label>
-                </div>
-              </>
-            );
-          })}
+          {/*Filter array to skip current folder to avoid deleting, then map it */}
+          {folderStore.folders && folderStore?.folders
+            .filter((f) => f.urlParam !== folder)
+            .map((f) => {
+              return (
+                <React.Fragment key={f.urlParam}>
+                  <div className="flex items-center">
+                    <input
+                      id={f.urlParam}
+                      type="radio"
+                      name="folder"
+                      value={f.urlParam}
+                      className="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300    dark:bg-gray-700 dark:border-gray-600"
+                      onChange={handleRadioChange}
+                    />
+                    <label htmlFor={f.urlParam} className="ml-2">
+                      {f.title}
+                    </label>
+                  </div>
+                </React.Fragment>
+              );
+            })}
         </fieldset>
 
         <button
@@ -93,4 +97,4 @@ const ChooseFolderModal: React.FC = () => {
   );
 };
 
-export default observer(ChooseFolderModal)
+export default observer(ChooseFolderModal);

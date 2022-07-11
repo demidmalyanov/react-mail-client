@@ -16,38 +16,38 @@ class FolderStore implements IFolderStore {
 
   createFolder(title: string) {
     // Create new folder and set in storage
-    localStorage.setItem(`custom_${Date.now()}`, initialFolderData);
+    const folderId = `custom_${Date.now()}`;
+    localStorage.setItem(folderId, initialFolderData);
+    alert("Called");
 
     // Push new folder to folder list
     this.folders.push({
       icon: "/icons/folder-icon.svg",
       title: title,
-      urlParam: `custom_${Date.now()}`,
+      urlParam: folderId,
       readonly: false,
     });
 
     localStorage.setItem("initFolders", JSON.stringify(this.folders));
   }
 
-  getFolderData() {}
+  getFolderData(urlParam: string) {
+    let dataStr = localStorage.getItem(urlParam);
+    if (!dataStr) {
+      return [];
+    }
+    const result = JSON.parse(dataStr);
 
-  updateFolder(urlParam:string, newTitle: string) {
-    // copy data from old
-    const data: any = localStorage.getItem(urlParam);
-    console.log(data);
+    return result;
+  }
 
-    // set new key
-    localStorage.setItem(newTitle, data);
-
-    // rewrite init folders
+  updateFolder(urlParam: string, newTitle: string) {
     this.folders.forEach((folder) => {
       if (folder.urlParam === urlParam) {
         folder.title = newTitle;
       }
     });
-
-    // remove old item
-    localStorage.removeItem(urlParam);
+    localStorage.setItem("initFolders", JSON.stringify(this.folders));
   }
 
   deleteFolder() {}

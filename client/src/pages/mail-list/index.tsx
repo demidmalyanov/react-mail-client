@@ -3,30 +3,30 @@ import MailList from "../../components/MailList";
 import Layout from "../../components/layout/Layout";
 import ToolBar from "../../components/ToolBar";
 import { observer } from "mobx-react-lite";
-import { Outlet, useParams } from "react-router-dom";
 import mailStore from "../../store/MailStore";
+import { useParams } from "react-router-dom";
 import { IMail } from "../../components/Mail";
+import FolderStore from "../../store/FolderStore";
+import { IFolder } from "../../components/layout/Folder";
+import { initApp, shouldInit } from "../../data/initData";
 
 const MailListPage: React.FC = () => {
-  let { folder } = useParams();
-  const [mails, setMails] = React.useState<IMail[]>([]);
+  let { folder }: any = useParams();
+  const [mails, setMails] = React.useState<IMail[]|null>(null);
+  
+  
+  
 
-  console.log(folder);
 
   React.useEffect(() => {
-    if (folder) {
-      let data = localStorage.getItem(folder);
-      if (data) {
-        const parsedData = JSON.parse(data);
-        setMails(parsedData);
-      }
-    }
-  }, []);
+    let data = FolderStore.getFolderData(folder);
+    setMails(data);
+  }, [folder,mailStore.chosen]);
 
   return (
     <Layout>
       <ToolBar isActive={mailStore.chosen.length > 0} />
-      {mails.length === 0 ? <p>Loading...</p> : <MailList mails={mails} />}
+      <MailList mails={mails} />
     </Layout>
   );
 };
