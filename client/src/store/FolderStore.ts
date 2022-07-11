@@ -1,7 +1,13 @@
 import { makeAutoObservable } from "mobx";
-import { IFolder } from "../components/layout/Folder";
+import { IFolder } from "../components/features/Folder/Folder";
 
-interface IFolderStore {}
+interface IFolderStore {
+  folders: IFolder[];
+  createFolder: (title: string) => void;
+  getFolderData: (title: string) => void;
+  updateFolder: (urlParam: string, newTitle: string) => void;
+  deleteFolder: (urlParam: string) => void;
+}
 
 const initialFolderData = "[]";
 

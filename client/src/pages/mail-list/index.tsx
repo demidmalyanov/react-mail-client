@@ -1,13 +1,13 @@
 import React from "react";
-import MailList from "../../components/MailList";
+import MailList from "../../components/features/Mail/MailList";
 import Layout from "../../components/layout/Layout";
-import ToolBar from "../../components/ToolBar";
+import ToolBar from "../../components/features/Toolbar/ToolBar";
 import { observer } from "mobx-react-lite";
 import mailStore from "../../store/MailStore";
 import { useParams } from "react-router-dom";
-import { IMail } from "../../components/Mail";
+import { IMail } from "../../components/features/Mail/Mail";
 import FolderStore from "../../store/FolderStore";
-import { IFolder } from "../../components/layout/Folder";
+import { IFolder } from "../../components/features/Folder/Folder";
 import { initApp, shouldInit } from "../../data/initData";
 
 const MailListPage: React.FC = () => {

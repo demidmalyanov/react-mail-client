@@ -1,10 +1,10 @@
 import { observer } from "mobx-react-lite";
 import React from "react";
-import FoldersList from "./FoldersList";
+import FoldersList from "../features/Folder/FoldersList";
 import Header from "./Header";
 import folderStore from "../../store/FolderStore";
-import CreateFolderModal from "./CreateFolderModal";
-import { IFolder } from "./Folder";
+import CreateFolderModal from "../features/Folder/CreateFolderModal";
+import { IFolder } from "../features/Folder/Folder";
 import { useNavigate } from "react-router-dom";
 
 interface ILayoutProps {

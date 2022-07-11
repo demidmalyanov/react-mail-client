@@ -3,7 +3,7 @@ import React from "react";
 import { Route, Routes } from "react-router-dom";
 import MailPage from "./pages/mail";
 import MailListPage from "./pages/mail-list";
-import IndexPage from "./pages/auth";
+import IndexPage from "./pages/index";
 import { initApp, shouldInit } from "./data/initData";
 
 const App = observer(() => {

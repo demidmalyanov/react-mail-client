@@ -1,9 +1,13 @@
 import { makeAutoObservable } from "mobx";
-import { IMail } from "../components/Mail";
+import { IMail } from "../components/features/Mail/Mail";
 
 export interface IMailStore {
   chosen: number[];
   moveToFolder: (currentFolder: string, destFolder: string) => void;
+  clearChosen: () => void;
+  getMailById: (currentFolder: string, id: number) => void;
+  onToggleMail: (id: number, checked: boolean) => void;
+  markAsRead: (currentFolder: string, id?: number) => void;
 }
 
 class MailStore implements IMailStore {
@@ -83,7 +87,7 @@ class MailStore implements IMailStore {
 
       localStorage.setItem(currentFolder, JSON.stringify(folderData));
     }
-    this.clearChosen()
+    this.clearChosen();
   }
 }
 

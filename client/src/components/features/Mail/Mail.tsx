@@ -1,8 +1,9 @@
 import { observer } from "mobx-react-lite";
 import React from "react";
 import { Link, useParams } from "react-router-dom";
-import FolderStore from "../store/FolderStore";
-import mailStore from "../store/MailStore";
+import FolderStore from "../../../store/FolderStore";
+import mailStore from "../../../store/MailStore";
+import { formatUnixToString } from "../../services/DateTimeService";
 
 export interface IMail {
   readonly id: number;
@@ -64,7 +65,9 @@ const Mail: React.FC<IMail> = ({
         </td>
       </Link>
       <td className="py-4 text-sm text-right whitespace-nowrap absolute right-2">
-        <p className="font-light text-gray-400">{timestamp}</p>
+        <p className="font-light text-gray-400">
+          {formatUnixToString(timestamp)}
+        </p>
       </td>
     </tr>
   );

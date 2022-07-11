@@ -1,7 +1,7 @@
 import React from "react";
 import { Link, useParams } from "react-router-dom";
 import EditFolderModal from "./EditFolderModal";
-import FolderStore from "../../store/FolderStore";
+import FolderStore from "../../../store/FolderStore";
 import { observer } from "mobx-react-lite";
 
 export interface IFolder {

@@ -1,6 +1,6 @@
 import React from "react";
 import Modal from "react-modal";
-import folderStore from "../../store/FolderStore";
+import folderStore from "../../../store/FolderStore";
 
 const customStyles = {
   content: {

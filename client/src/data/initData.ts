@@ -1,5 +1,5 @@
-import { IFolder } from "../components/layout/Folder";
-import { IMail } from "../components/Mail";
+import { IFolder } from "../components/features/Folder/Folder";
+import { IMail } from "../components/features/Mail/Mail";
 
 const shouldInit = localStorage.getItem("init") ? false : true;
 

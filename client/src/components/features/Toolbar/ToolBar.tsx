@@ -1,8 +1,8 @@
 import { observer } from "mobx-react-lite";
 import React from "react";
 import { useParams } from "react-router-dom";
-import mailStore from "../store/MailStore";
-import ChooseFolderModal from "./layout/ChooseFolderModal";
+import mailStore from "../../../store/MailStore";
+import ChooseFolderModal from "../Folder/ChooseFolderModal";
 import Tool, { ITool } from "./Tool";
 
 export interface IToolBarProps {

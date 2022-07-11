@@ -1,9 +1,9 @@
 import React from "react";
 import Modal from "react-modal";
 import { useParams } from "react-router-dom";
-import folderStore from "../../store/FolderStore";
-import MailStore from "../../store/MailStore";
-import Tool from "../Tool";
+import folderStore from "../../../store/FolderStore";
+import MailStore from "../../../store/MailStore";
+import Tool from "../Toolbar/Tool";
 import { observer } from "mobx-react-lite";
 
 const customStyles = {

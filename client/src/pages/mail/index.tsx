@@ -2,7 +2,7 @@ import { observer } from "mobx-react-lite";
 import React from "react";
 import { useParams } from "react-router-dom";
 import Layout from "../../components/layout/Layout";
-import { IMail } from "../../components/Mail";
+import { IMail } from "../../components/features/Mail/Mail";
 import mailStore from "../../store/MailStore";
 
 const MailPage: React.FC = () => {

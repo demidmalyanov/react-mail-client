@@ -1,6 +1,6 @@
 import { observer } from "mobx-react-lite";
 import React from "react";
-import FolderStore from "../../store/FolderStore";
+import FolderStore from "../../../store/FolderStore";
 import Folder, { IFolder } from "./Folder";
 
 const FoldersList: React.FC = () => {
