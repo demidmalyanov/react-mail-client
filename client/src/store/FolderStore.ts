@@ -18,7 +18,6 @@ class FolderStore implements IFolderStore {
     // Create new folder and set in storage
     const folderId = `custom_${Date.now()}`;
     localStorage.setItem(folderId, initialFolderData);
-    alert("Called");
 
     // Push new folder to folder list
     this.folders.push({
@@ -50,7 +49,19 @@ class FolderStore implements IFolderStore {
     localStorage.setItem("initFolders", JSON.stringify(this.folders));
   }
 
-  deleteFolder() {}
+  deleteFolder(urlParam: string) {
+    // remove folder
+    localStorage.removeItem(urlParam);
+
+    // cleanup init folders list
+    let dataStr = localStorage.getItem("initFolders");
+    if (dataStr) {
+      let data = JSON.parse(dataStr);
+      let newData = data.filter((f: IFolder) => f.urlParam !== urlParam);
+      this.folders = newData;
+      localStorage.setItem("initFolders", JSON.stringify(newData));
+    }
+  }
 }
 
 export default new FolderStore();

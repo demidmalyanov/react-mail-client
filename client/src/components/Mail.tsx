@@ -1,6 +1,7 @@
 import { observer } from "mobx-react-lite";
 import React from "react";
 import { Link, useParams } from "react-router-dom";
+import FolderStore from "../store/FolderStore";
 import mailStore from "../store/MailStore";
 
 export interface IMail {
@@ -25,10 +26,9 @@ const Mail: React.FC<IMail> = ({
   // current folder param
   const { folder } = useParams();
 
-
   return (
-    <tr className="hover:bg-gray-100 dark:hover:bg-gray-700 cursor-pointer">
-      <td className="p-4 w-4">
+    <tr className="hover:bg-gray-100 dark:hover:bg-gray-700 cursor-pointer flex flex-row px-3 relative">
+      <td className="p-4 w-4 mr-4">
         <div className="flex items-center">
           <input
             id="checkbox-table-1"
@@ -39,18 +39,21 @@ const Mail: React.FC<IMail> = ({
               mailStore.onToggleMail(parseInt(e.target.value), !checked);
               setChecked(!checked);
             }}
-            checked={checked}
+            checked={mailStore.chosen.includes(id)}
           />
         </div>
       </td>
-      <Link to={`/${folder}/${id}`} className="block w-full">
-        <td className="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">
+      <Link to={`/${folder}/${id}`} className="w-full flex relative">
+        <td className="py-4 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white mr-4">
           {author}
         </td>
-        <td className="py-4 px-6 text-sm  whitespace-nowrap dark:text-white max-w-[200px]">
-          <p className="truncate">{subject}</p>
-        </td>
-        <td className="py-4 px-6 max-w-[800px]">
+
+        {subject && (
+          <td className="py-4  text-sm  whitespace-nowrap dark:text-white max-w-[200px] mr-4">
+            <p className="truncate">{subject}</p>
+          </td>
+        )}
+        <td className="py-4  max-w-[800px]">
           <p
             className={`${
               read ? "text-gray-400" : "text-black font-medium"
@@ -59,10 +62,10 @@ const Mail: React.FC<IMail> = ({
             {text}
           </p>
         </td>
-        <td className="py-4 px-6 text-sm text-right whitespace-nowrap">
-          <p className="font-light text-gray-400">{timestamp}</p>
-        </td>
       </Link>
+      <td className="py-4 text-sm text-right whitespace-nowrap absolute right-2">
+        <p className="font-light text-gray-400">{timestamp}</p>
+      </td>
     </tr>
   );
 };

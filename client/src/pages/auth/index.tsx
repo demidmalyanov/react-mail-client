@@ -1,5 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import { shouldInit } from "../../data/initData";
 
 const IndexPage: React.FC = () => {
   const [email, setEmail] = React.useState("");

@@ -1,9 +1,7 @@
 import { observer } from "mobx-react-lite";
 import React from "react";
 import { Route, Routes } from "react-router-dom";
-import { IMail } from "./components/Mail";
 import MailPage from "./pages/mail";
-import { IFolder } from "./components/layout/Folder";
 import MailListPage from "./pages/mail-list";
 import IndexPage from "./pages/auth";
 import { initApp, shouldInit } from "./data/initData";
@@ -14,7 +12,7 @@ const App = observer(() => {
       console.log("not init");
       return;
     }
-    initApp();
+    window.onload = () => initApp();
   }, [shouldInit]);
 
   return (

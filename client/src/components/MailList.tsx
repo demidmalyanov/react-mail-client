@@ -1,9 +1,10 @@
 import { observer } from "mobx-react-lite";
 import React from "react";
+import { Link, useParams } from "react-router-dom";
 import Mail, { IMail } from "./Mail";
 
 interface IMailListProps {
-  mails: IMail[]|null;
+  mails: IMail[] | null;
 }
 const MailList: React.FC<IMailListProps> = ({ mails }) => {
   if (mails && mails.length === 0) {

@@ -1,6 +1,8 @@
 import React from "react";
 import { Link, useParams } from "react-router-dom";
 import EditFolderModal from "./EditFolderModal";
+import FolderStore from "../../store/FolderStore";
+import { observer } from "mobx-react-lite";
 
 export interface IFolder {
   icon?: string;
@@ -21,7 +23,6 @@ const Folder: React.FC<IFolder> = ({
   const [showBtn, setShowBtn] = React.useState<boolean>(false);
 
   const handleMouseEnter = () => {
-
     if (!readonly) {
       setShowBtn(true);
     }
@@ -48,10 +49,21 @@ const Folder: React.FC<IFolder> = ({
         </div>
 
         <p>{count}</p>
-        {showBtn && <EditFolderModal currentParam={urlParam} />}
+        {showBtn && (
+          <div className="flex flex-row">
+            <button onClick={() => FolderStore.deleteFolder(urlParam)} className="hover:scale-125 mr-3">
+              <img
+                className="w-[10px] h-[10px]"
+                src="/icons/trash-icon.svg"
+                alt="trash"
+              />
+            </button>
+            <EditFolderModal currentParam={urlParam} />
+          </div>
+        )}
       </div>
     </Link>
   );
 };
 
-export default Folder;
+export default observer(Folder);

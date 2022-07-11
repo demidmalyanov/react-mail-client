@@ -63,7 +63,7 @@ const ChooseFolderModal: React.FC = () => {
           <legend>Выберите папку назначения</legend>
 
           {/*Filter array to skip current folder to avoid deleting, then map it */}
-          {folderStore.folders && folderStore?.folders
+          {folderStore.folders && folderStore.folders
             .filter((f) => f.urlParam !== folder)
             .map((f) => {
               return (

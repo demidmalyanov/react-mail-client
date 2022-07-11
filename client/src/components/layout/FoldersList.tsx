@@ -4,20 +4,16 @@ import FolderStore from "../../store/FolderStore";
 import Folder, { IFolder } from "./Folder";
 
 const FoldersList: React.FC = () => {
-  const defaultValue :any= localStorage.getItem("initFolders")
   const [folders, setFolders] = React.useState<IFolder[] | null>(null);
 
   React.useEffect(() => {
-   
-   
-      setFolders(FolderStore.folders);
-  
+    setFolders(FolderStore.folders);
   }, [FolderStore.folders]);
 
   return (
     <div className="w-[100%] h-[500px]">
       <ul>
-        {folders?.map((f: IFolder) => {
+        {folders && folders?.map((f: IFolder) => {
           return (
             <li key={f.title}>
               <Folder

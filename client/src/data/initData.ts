@@ -5,16 +5,26 @@ const shouldInit = localStorage.getItem("init") ? false : true;
 
 const inboxData: IMail[] = [
   {
-    id: Date.now(),
-    author: "Demid M",
-    text: "Show me your tits",
+    id: Date.now()+1,
+    author: "Yandex",
+    text: "Задачи можно решать в любом порядке. Если что-то не получается, переходите к следующей. Пока время не закончилось, вы сможете вернуться к нерешенной задаче.",
+    subject: "Школа интерфейсов",
     read: false,
     timestamp: Date.now(),
   },
   {
-    id: 454545665,
-    author: "Demid M",
-    text: "Show me your ass",
+    id: Date.now()+2,
+    author: "hh.ru",
+    text: "Добрый день, большое спасибо за отклик на нашу вакансию, подскажите, есть ли у Вас кейс работ по Web или портфолио? Елена",
+    subject: "Новое сообщение от работодателя",
+    read: false,
+    timestamp: Date.now(),
+  },
+  {
+    id: Date.now()+3,
+    author: "hh.ru",
+    text: "Здравствуйте!Ваше резюме Fullstack Developerпросматривала компания iSimpleLab.Ознакомьтесь с вакансиями, которые открыты в этой компании, возможно, среди них найдется подходящая.",
+    subject: "Ваше резюме просмотренo",
     read: false,
     timestamp: Date.now(),
   },
@@ -57,4 +67,4 @@ const initApp = () => {
   localStorage.setItem("initFolders", JSON.stringify(initialFolders));
 };
 
-export { shouldInit, inboxData, initialFolders,initApp };
+export { shouldInit, inboxData, initialFolders, initApp };
