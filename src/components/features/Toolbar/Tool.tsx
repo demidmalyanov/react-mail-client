@@ -1,5 +1,6 @@
 import React from "react";
 
+// Герман смотри сюда, и Миша тоже) Выше описываешь пропсы, ниже вставляешь их как дженерик тип
 export interface ITool {
   icon: string;
   title: string;
