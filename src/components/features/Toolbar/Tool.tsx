@@ -7,6 +7,7 @@ export interface ITool {
   action: (arg: any) => void;
 }
 
+// Здесь тип Реакт ФС( функциональный компонент, который зависит от интерфейса выше )
 const Tool: React.FC<ITool> = ({ icon, title, action }) => {
   return (
     <div
