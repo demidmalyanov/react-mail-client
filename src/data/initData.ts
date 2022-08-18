@@ -20,14 +20,6 @@ const inboxData: IMail[] = [
     read: false,
     timestamp: Date.now(),
   },
-  {
-    id: Date.now()+3,
-    author: "hh.ru",
-    text: "Здравствуйте!Ваше резюме Fullstack Developerпросматривала компания iSimpleLab.Ознакомьтесь с вакансиями, которые открыты в этой компании, возможно, среди них найдется подходящая.",
-    subject: "Ваше резюме просмотренo",
-    read: false,
-    timestamp: Date.now(),
-  },
 ];
 
 const initialFolders: IFolder[] = [
